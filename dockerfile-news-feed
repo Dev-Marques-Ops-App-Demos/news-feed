@@ -1,0 +1,3 @@
+FROM localhost/php-news-feed:latest
+
+ADD noticias /var/www/html

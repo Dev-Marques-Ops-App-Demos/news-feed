@@ -1,8 +1,8 @@
 <?php
 
-$host = "banco_mysql";
-$usuario = "root";
-$senha = "q1w2e3r4";
-$banco = "empresa";
+$host = getenv('DATABASE_HOST');
+$usuario = getenv('DATABASE_USER');
+$senha = getenv('DATABASE_PASSWORD');
+$banco = getenv('DATABASE_NAME');
 
 ?>

@@ -1,0 +1,55 @@
+version: 3.4
+services:
+  mysql:
+    container_name: mysql
+    image: mysql:5.7
+    restart: always
+    environment:
+    - MYSQL_DATABASE=${MYSQL_DATABASE}
+    - MYSQL_USER=${MYSQL_USER}
+    - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+    - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+    env_file:
+    - .env
+    ports:
+      - 3306:3306
+    volumes:
+      - mysql:/var/lib/mysql
+    command:
+      '--character-set-server=utf8mb4
+      --collation-server=utf8mb4_unicode_ci'
+  news-system:
+    container_name: news-system
+    build:
+      context: .
+      dockerfile: dockerfile-news-system
+    image: news-system
+    restart: always
+    environment:
+    - DATABASE_HOST=${DATABASE_HOST}
+    - DATABASE_NAME=${MYSQL_DATABASE}
+    - DATABASE_USER=${MYSQL_USER}
+    - DATABASE_PASSWORD=${MYSQL_PASSWORD}
+    ports:
+    - 8587:80
+    volumes:
+    - system:/var/www/html/uploads
+    links:
+    - mysql
+    depends_on:
+    - mysql
+  news-feed:
+    container_name: news-feed
+    build:
+      context: .
+      dockerfile: dockerfile-news-feed
+    image: news-feed
+    restart: always
+    ports:
+    - 8588:80
+    volumes:
+    - system:/var/www/html/uploads
+    links:
+    - news-system
+    depends_on:
+    - news-system

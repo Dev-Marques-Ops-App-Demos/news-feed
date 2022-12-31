@@ -15,30 +15,28 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
+USE empresa;
+
 --
--- Table structure for table `usuario`
+-- Table structure for table `noticias`
 --
 
-DROP TABLE IF EXISTS `usuario`;
+DROP TABLE IF EXISTS `noticias`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
-CREATE TABLE `usuario` (
-  `idusuario` int(11) NOT NULL AUTO_INCREMENT,
-  `login` varchar(45) DEFAULT NULL,
-  `senha` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`idusuario`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+CREATE TABLE `noticias` (
+  `idnoticias` int(11) NOT NULL AUTO_INCREMENT,
+  `foto` varchar(255) DEFAULT NULL,
+  `titulo` varchar(45) DEFAULT NULL,
+  `noticia` text,
+  PRIMARY KEY (`idnoticias`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `usuario`
+-- Dumping data for table `noticias`
 --
 
-LOCK TABLES `usuario` WRITE;
-/*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
-INSERT INTO `usuario` VALUES (1,'admin','admin');
-/*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
-UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
