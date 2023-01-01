@@ -1,4 +1,4 @@
 FROM localhost/php-news-feed:latest
 
-ADD sistema /var/www/html
+ADD system /var/www/html
 RUN chmod 777 -R /var/www/html/uploads
