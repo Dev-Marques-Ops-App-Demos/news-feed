@@ -1,5 +1,5 @@
-name: Frist GitHub Actions
-run-name: ${{ github.actor }} is styding this tool.
+name: First GitHub Actions
+run-name: ${{ github.actor }} is studying this tool.
 on:
   push:
     branches:
@@ -13,3 +13,8 @@ jobs:
       - name: Run Shell
         run: echo "Hello Actions!"
         shell: bash
+      - name: GitHub Outputs
+        run: |
+          echo GitHub Repository: ${{github.repository}} \
+          echo GitHub Ref: ${{github.ref}} \
+          GitHub Workspace: ${{github.workspace}}
