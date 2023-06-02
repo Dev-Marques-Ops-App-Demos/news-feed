@@ -18,3 +18,5 @@ jobs:
           echo GitHub Repository: ${{github.repository}} \
           echo GitHub Ref: ${{github.ref}} \
           GitHub Workspace: ${{github.workspace}}
+      - name: Is Docker Installed
+        run: docker -v
