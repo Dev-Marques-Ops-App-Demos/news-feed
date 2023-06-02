@@ -1,0 +1,25 @@
+name: Build and push base image
+on:
+  push:
+    branches:
+      - master
+  repository_dispatch:
+jobs:
+  BuildPushBaseImage:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          role-to-assume: arn:aws:iam::128684785872:role/ECRPushImage
+          aws-region: us-east-1
+
+      - name: ECR Credentials
+        id: ecr-credentials
+        uses: aws-actions/amazon-ecr-login@v1
+
+      - name: Directory Verify
+        run: ls -a
