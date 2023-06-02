@@ -10,8 +10,8 @@ to make possible perform my own DevOps demos over cloud infrastructure environme
 ```
 ├── base        # Configuration files to build the PHP base application image
 ├── dumps       # SQL dumps to configure database tables
-├── noticias    # News feed itself 
-└── sistema     # News register system
+├── news        # News feed itself 
+└── system      # News register system
 ```
 
 ## How to Deploy by Podman/Docker

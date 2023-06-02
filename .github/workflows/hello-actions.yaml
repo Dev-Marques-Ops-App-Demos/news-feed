@@ -1,0 +1,15 @@
+name: Frist GitHub Actions
+run-name: ${{ github.actor }} is styding this tool.
+on:
+  push:
+    branches:
+      - master
+jobs:
+  Hello:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Run Shell
+        run: echo "Hello Actions!"
+        shell: bash
