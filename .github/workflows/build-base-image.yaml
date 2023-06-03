@@ -8,8 +8,6 @@ on:
 jobs:
   BuildPushBaseImage:
     runs-on: ubuntu-latest
-    environment:
-      name: AWS Defaults
     permissions:
       id-token: write
       contents: read
@@ -19,8 +17,10 @@ jobs:
 
       - name: AWS Credentials
         uses: aws-actions/configure-aws-credentials@v2
+        env:
+          AWS_ACCOUNT: ${{ secrets.AWS_ACCOUNT }}
         with:
-          role-to-assume: arn:aws:iam::${{ secrets.AWS_ACCOUNT }}:role/ECRPushImage
+          role-to-assume: arn:aws:iam::$AWS_ACCOUNT:role/ECRPushImage
           aws-region: us-east-1
 
       - name: ECR Credentials
