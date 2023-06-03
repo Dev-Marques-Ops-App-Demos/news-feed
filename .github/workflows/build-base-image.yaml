@@ -24,5 +24,8 @@ jobs:
         id: ecr-credentials
         uses: aws-actions/amazon-ecr-login@v1
 
-      - name: Directory Verify
-        run: ls -a
+      - name: Build, Tag and Push
+        run: |
+          docker build -f base/Dockerfile base -t 128684785872.dkr.ecr.us-east-1.amazonaws.com/news-feed:latest
+          docker push 128684785872.dkr.ecr.us-east-1.amazonaws.com/news-feed:latest
+          echo "image=$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG" >> $GITHUB_OUTPUT
