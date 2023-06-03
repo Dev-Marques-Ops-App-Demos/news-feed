@@ -3,7 +3,10 @@ FROM php:5.6-apache
 COPY php.ini-production /usr/local/etc/php/
 COPY php.ini-development /usr/local/etc/php/
 
-RUN apt update && \
+RUN sed -i -e 's/deb.debian.org/archive.debian.org/g' \
+           -e 's|security.debian.org|archive.debian.org/|g' \
+           -e '/stretch-updates/d' /etc/apt/sources.list && \
+    apt update && \
     apt install -y \
     libfreetype6-dev \
     libjpeg62-turbo-dev \
