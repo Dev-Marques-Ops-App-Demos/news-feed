@@ -49,4 +49,4 @@ jobs:
           docker build -f base/Dockerfile base \
           -t ${{ env.REGISTRY }}/${{ env.REPOSITORY }}:$VERSION \
           -t ${{ env.REGISTRY }}/${{ env.REPOSITORY }}:latest && \
-          docker push ${{ env.REGISTRY }}/${{ env.REPOSITORY }}:$VERSION
+          docker push ${{ env.REGISTRY }}/${{ env.REPOSITORY }}
