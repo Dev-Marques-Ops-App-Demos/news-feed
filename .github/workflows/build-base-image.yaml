@@ -42,15 +42,9 @@ jobs:
           bump_version_scheme: minor
           tag_prefix: v
 
-      - name: Tags Outputs
+      - name: Build, Tag and Push
+        env:
+          VERSION: ${{ steps.tag-release.outputs.tag_name }}
         run: |
-          echo "Got tag name ${{ steps.tag-release.outputs.tag_name }}"
-          echo "Got release version ${{ steps.tag-release.outputs.version }}"
-          echo "Upload release artifacts to ${{ steps.tag-release.outputs.upload_url }}"
-        shell: bash
-
-#      - name: Build, Tag and Push
-#        run: |
-#          docker build -f base/Dockerfile base -t ${{ env.REGISTRY }}/${{ env.REPOSITORY }}:latest
-#          docker push ${{ env.REGISTRY }}/${{ env.REPOSITORY }}:latest
-#          echo "image=${{ env.REGISTRY }}/${{ env.REPOSITORY }}:latest" >> $GITHUB_OUTPUT
+          docker build -f base/Dockerfile base -t ${{ env.REGISTRY }}/${{ env.REPOSITORY }}:$VERSION
+          docker push ${{ env.REGISTRY }}/${{ env.REPOSITORY }}:$VERSION
