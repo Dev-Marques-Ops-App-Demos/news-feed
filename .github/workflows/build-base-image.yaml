@@ -20,7 +20,7 @@ jobs:
         env:
           AWS_ACCOUNT: ${{ secrets.AWS_ACCOUNT }}
         with:
-          role-to-assume: 'arn:aws:iam::$AWS_ACCOUNT:role/ECRPushImage'
+          role-to-assume: "arn:aws:iam::$AWS_ACCOUNT:role/ECRPushImage"
           aws-region: us-east-1
 
       - name: ECR Credentials
