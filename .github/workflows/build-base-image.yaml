@@ -7,9 +7,9 @@ on:
 
 env:
   ACCOUNT_NUMBER: ${{ secrets.AWS_ACCOUNT }}
-  AWS_REGION: ${{ vars.AWS_DEFAULT_REGION }}
-  REGISTRY: ${{ vars.$REGISTRY_NEWS_FEED }}
-  REPOSITORY: ${{ vars.$REPOSITORY_NEWS_FEED }}
+  AWS_REGION:     ${{ vars.AWS_DEFAULT_REGION }}
+  REGISTRY:       ${{ vars.REGISTRY_NEWS_FEED }}
+  REPOSITORY:     ${{ vars.REPOSITORY_NEWS_FEED }}
 
 jobs:
   BuildPushBaseImage:
