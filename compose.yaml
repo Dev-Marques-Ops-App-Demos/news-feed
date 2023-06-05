@@ -22,6 +22,8 @@ services:
     container_name: news-system
     build:
       context: .
+      args:
+        BASE_IMAGE: 128684785872.dkr.ecr.us-east-1.amazonaws.com/news-feed-system:latest
       dockerfile: dockerfile-news-system
     image: news-system
     restart: always
@@ -42,6 +44,8 @@ services:
     container_name: news-feed
     build:
       context: .
+      args:
+        BASE_IMAGE: 128684785872.dkr.ecr.us-east-1.amazonaws.com/news-feed-news:latest
       dockerfile: dockerfile-news-feed
     image: news-feed
     restart: always

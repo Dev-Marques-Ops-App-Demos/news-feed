@@ -14,19 +14,24 @@ to make possible perform my own DevOps demos over cloud infrastructure environme
 └── system      # News register system
 ```
 
-## How to Deploy by Podman/Docker
+## How to Deploy by Podman/Docker Locally
 
-#### Build the PHP base image
+### Build the PHP base image
 ``` shell
 podman build -f base/Dockerfile -t php-news-feed base
 ```
 
-#### Deploy the application
+### [Login to ECR Private Repository](https://docs.aws.amazon.com/pt_br/AmazonECR/latest/userguide/registry_auth.html)
+```shell
+aws ecr get-login-password --region REGION | docker login --username AWS --password-stdin AWS_ACCOUNT_ID.dkr.ecr.REGION.amazonaws.com
+```
+
+### Deploy the application
 ``` shell
 podman-compose up -d
 ```
 
-#### Populate the _empresa_ database
+### Populate the _empresa_ database
 ``` shell
 podman exec -i mysql sh -c 'exec mysql -uuser -p"userpassword"' < dumps/empresa_usuario.sql
 ```
@@ -34,7 +39,7 @@ podman exec -i mysql sh -c 'exec mysql -uuser -p"userpassword"' < dumps/empresa_
 podman exec -i mysql sh -c 'exec mysql -uuser -p"userpassword"' < dumps/empresa_noticias.sql
 ```
 
-#### Access
+### Access
 **- System:** http://localhost:8587
 <br>
 **- News Feed:** http://localhost:8588
