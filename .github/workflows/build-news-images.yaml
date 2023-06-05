@@ -14,7 +14,7 @@ env:
   REPOSITORY:     ${{ vars.REPOSITORY_NEWS_IMAGE }}
 
 jobs:
-  BuildPushBaseImage:
+  BuildPushNewsImage:
     runs-on: ubuntu-latest
     env:
       GITHUB_TOKEN:   ${{ secrets.GITHUB_TOKEN }}
