@@ -5,7 +5,7 @@ on:
       - master
     paths:
       - system
-  repository_dispatch:
+  workflow_dispatch:
 
 env:
   ACCOUNT_NUMBER: ${{ secrets.AWS_ACCOUNT }}
