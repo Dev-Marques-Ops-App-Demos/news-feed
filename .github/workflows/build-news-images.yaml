@@ -48,7 +48,7 @@ jobs:
         env:
           VERSION: ${{ steps.tag-release.outputs.tag_name }}
         run: |
-          docker build -f news/Dockerfile news \
+          docker build -f dockerfile-news-feed news \
           --build-arg BASE_IMAGE=${{ env.REGISTRY }}/${{ env.REPOSITORY }}:latest \
           -t ${{ env.REGISTRY }}/${{ env.REPOSITORY }}:$VERSION \
           -t ${{ env.REGISTRY }}/${{ env.REPOSITORY }}:latest && \

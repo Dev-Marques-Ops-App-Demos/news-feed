@@ -48,7 +48,7 @@ jobs:
         env:
           VERSION: ${{ steps.tag-release.outputs.tag_name }}
         run: |
-          docker build -f system/Dockerfile system \
+          docker build -f dockerfile-news-system system \
           -t ${{ env.REGISTRY }}/${{ env.REPOSITORY }}:$VERSION \
           -t ${{ env.REGISTRY }}/${{ env.REPOSITORY }}:latest && \
           docker push ${{ env.REGISTRY }}/${{ env.REPOSITORY }} --all-tags
