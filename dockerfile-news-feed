@@ -1,4 +1,3 @@
-#FROM localhost/php-news-feed:latest
 ARG BASE_IMAGE
 
 FROM $BASE_IMAGE

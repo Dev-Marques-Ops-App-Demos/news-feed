@@ -1,4 +1,6 @@
-FROM localhost/php-news-feed:latest
+ARG BASE_IMAGE
+
+FROM $BASE_IMAGE
 
 ADD system /var/www/html
 RUN chmod 777 -R /var/www/html/uploads

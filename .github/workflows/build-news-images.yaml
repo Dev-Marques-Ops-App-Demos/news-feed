@@ -49,7 +49,7 @@ jobs:
           VERSION:          ${{ steps.tag-release.outputs.tag_name }}
           BASE_REPOSITORY:  news-feed-base
         run: |
-          docker build -f dockerfile-news-feed news \
+          docker build -f dockerfile-news-feed . \
           --build-arg BASE_IMAGE=${{ env.REGISTRY }}/$BASE_REPOSITORY:latest \
           -t ${{ env.REGISTRY }}/${{ env.REPOSITORY }}:$VERSION \
           -t ${{ env.REGISTRY }}/${{ env.REPOSITORY }}:latest && \
