@@ -7,10 +7,15 @@ on:
       - system
   workflow_dispatch:
 
+env:
+  ACCOUNT_NUMBER: ${{ secrets.AWS_ACCOUNT }}
+  AWS_REGION:     ${{ vars.AWS_DEFAULT_REGION }}
+  REGISTRY:       ${{ vars.REGISTRY }}
+  REPOSITORY:     ${{ vars.REPOSITORY_SYSTEM_IMAGE }}
+
 jobs:
   BuildPushBaseImage:
     runs-on: ubuntu-latest
-    environment: Development
     env:
       GITHUB_TOKEN:   ${{ secrets.GITHUB_TOKEN }}
     permissions:
@@ -25,8 +30,8 @@ jobs:
       - name: AWS Credentials
         uses: aws-actions/configure-aws-credentials@v2
         with:
-          role-to-assume: arn:aws:iam::${{ secrets.AWS_ACCOUNT }}:role/ECRPushImage
-          aws-region: ${{ vars.AWS_DEFAULT_REGION }}
+          role-to-assume: arn:aws:iam::${{ env.ACCOUNT_NUMBER }}:role/ECRPushImage
+          aws-region: ${{ env.AWS_REGION }}
 
       - name: ECR Credentials
         id: ecr-credentials
@@ -44,6 +49,6 @@ jobs:
           VERSION: ${{ steps.tag-release.outputs.tag_name }}
         run: |
           docker build -f base/Dockerfile base \
-          -t ${{ vars.REGISTRY }}/${{ vars.REPOSITORY_SYSTEM_IMAGE }}:$VERSION \
-          -t ${{ vars.REGISTRY }}/${{ vars.REPOSITORY_SYSTEM_IMAGE }}:latest && \
-          docker push ${{ vars.REGISTRY }}/${{ vars.REPOSITORY_SYSTEM_IMAGE }} --all-tags
+          -t ${{ env.REGISTRY }}/${{ env.REPOSITORY }}:$VERSION \
+          -t ${{ env.REGISTRY }}/${{ env.REPOSITORY }}:latest && \
+          docker push ${{ env.REGISTRY }}/${{ env.REPOSITORY }} --all-tags
