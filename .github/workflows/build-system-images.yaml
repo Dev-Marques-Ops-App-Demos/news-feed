@@ -1,17 +1,17 @@
-name: Build and Push Base Image
+name: Build and Push News Images
 on:
   push:
     branches:
       - master
     paths:
-      - base
+      - system
   repository_dispatch:
 
 env:
   ACCOUNT_NUMBER: ${{ secrets.AWS_ACCOUNT }}
   AWS_REGION:     ${{ vars.AWS_DEFAULT_REGION }}
   REGISTRY:       ${{ vars.REGISTRY }}
-  REPOSITORY:     ${{ vars.REPOSITORY_BASE_IMAGE }}
+  REPOSITORY:     ${{ vars.REPOSITORY_SYSTEM_IMAGE }}
 
 jobs:
   BuildPushBaseImage:
