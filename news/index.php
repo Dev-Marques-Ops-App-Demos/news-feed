@@ -57,7 +57,7 @@
         <!-- Navbar Right Menu -->
         <div class="navbar-custom-menu">
           <ul class="nav navbar-nav">
-            <li> <a href="<?php echo urlnoticias?>/inserir_noticias.php" target="_blank">Painel</a></li>
+            <li> <a href="<?php echo $urlnoticias?>/inserir_noticias.php" target="_blank">Painel</a></li>
 
             <!-- Messages: style can be found in dropdown.less-->
             <!-- /.messages-menu -->
@@ -150,7 +150,7 @@
 <script>
 
 $(function(){
-  var url = '<?php echo urlnoticias ?>'
+  var url = '<?php echo $urlnoticias ?>'
   var endereco = url+"/noticias.php";
   $.get(endereco,function(data){
 
