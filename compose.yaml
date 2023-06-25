@@ -1,6 +1,7 @@
-version: 3.4
+version: "3.4"
 services:
   mysql:
+    platform: linux/x86_64
     container_name: mysql
     image: mysql:5.7
     restart: always
@@ -12,7 +13,7 @@ services:
     env_file:
     - .env
     ports:
-      - 3306:3306
+    - 3306:3306
     volumes:
       - mysql:/var/lib/mysql
     command:
@@ -35,7 +36,7 @@ services:
     ports:
     - 8587:80
     volumes:
-    - system:/var/www/html/uploads
+      - system:/var/www/html/uploads
     links:
     - mysql
     depends_on:
@@ -49,11 +50,16 @@ services:
       dockerfile: dockerfile-news-feed
     image: news-feed
     restart: always
+    env_file:
+      - .env
     ports:
     - 8588:80
     volumes:
-    - system:/var/www/html/uploads
+      - system:/var/www/html/uploads
     links:
     - news-system
     depends_on:
     - news-system
+volumes:
+  mysql:
+  system:
